@@ -1,15 +1,15 @@
 {
     "appid": "81f461b1-4a38-48f1-bf2b-75478f958885",
     "name": "Proofpoint SOAR App",
-    "description": "Splunk SOAR app that integrates with the Proofpoint Threat Protection API. It leverage the strengths of Proofpoint's email protection to automate responses to threats and improve our overall security posture.",
+    "description": "Splunk SOAR app that integrates with the Proofpoint Threat Protection API. It leverage the strengths of Proofpoint's email protection to automate responses to threats and improve our overall security posture",
     "type": "network security",
     "product_vendor": "Proofpoint",
-    "logo": "proofpointsoarapp.png",
-    "logo_dark": "proofpointsoarapp_dark.png",
+    "logo": "logo_proofpointsoarapp.png",
+    "logo_dark": "logo_proofpointsoarapp_dark.png",
     "product_name": "Proofpoint Threat Protection API",
     "python_version": "3",
     "product_version_regex": ".*",
-    "publisher": "Splunk",
+    "publisher": "Splunk Community",
     "contributors": [
         {
             "name": "Patryk Dros"
@@ -22,6 +22,7 @@
     "main_module": "proofpointsoarapp_connector.py",
     "min_phantom_version": "6.1.1.211",
     "app_wizard_version": "1.0.0",
+    "fips_compliant": false,
     "configuration": {
         "base_url": {
             "description": "Company hostname for API execution",
@@ -47,7 +48,6 @@
             "action": "test connectivity",
             "identifier": "test_connectivity",
             "description": "Validate the asset configuration for connectivity using supplied configuration",
-            "verbose": "",
             "type": "test",
             "read_only": true,
             "parameters": {},
@@ -65,8 +65,6 @@
                     "description": "Cluster ID",
                     "data_type": "string",
                     "required": true,
-                    "primary": false,
-                    "value_list": [],
                     "order": 0
                 }
             },
@@ -74,8 +72,7 @@
                 {
                     "data_path": "action_result.parameter.clusterid",
                     "data_type": "string",
-                    "contains": [],
-                    "column_name": "clusterid"
+                    "column_name": "Clusterid"
                 },
                 {
                     "data_path": "action_result.data.*.attribute",
@@ -122,28 +119,24 @@
                     "description": "Cluster ID",
                     "data_type": "string",
                     "required": true,
-                    "primary": false,
                     "order": 0
                 },
                 "attribute": {
                     "description": "Attribute",
                     "data_type": "string",
                     "required": true,
-                    "primary": false,
                     "order": 1
                 },
                 "operator": {
                     "description": "Operator",
                     "data_type": "string",
                     "required": true,
-                    "primary": false,
                     "order": 2
                 },
                 "value": {
                     "description": "Cluster ID",
                     "data_type": "string",
                     "required": true,
-                    "primary": false,
                     "order": 3
                 },
                 "comment": {
@@ -156,13 +149,16 @@
                 {
                     "data_path": "action_result.parameter.clusterid",
                     "data_type": "string",
-                    "contains": [],
-                    "column_name": "clusterid"
+                    "column_name": "Clusterid"
                 },
                 {
                     "data_path": "action_result.status",
                     "data_type": "string",
-                    "column_name": "status"
+                    "column_name": "Status",
+                    "example_values": [
+                        "success",
+                        "failed"
+                    ]
                 },
                 {
                     "data_path": "action_result.message",
@@ -193,28 +189,24 @@
                     "description": "Cluster ID",
                     "data_type": "string",
                     "required": true,
-                    "primary": false,
                     "order": 0
                 },
                 "attribute": {
                     "description": "Attribute",
                     "data_type": "string",
                     "required": true,
-                    "primary": false,
                     "order": 1
                 },
                 "operator": {
                     "description": "Operator",
                     "data_type": "string",
                     "required": true,
-                    "primary": false,
                     "order": 2
                 },
                 "value": {
                     "description": "Cluster ID",
                     "data_type": "string",
                     "required": true,
-                    "primary": false,
                     "order": 3
                 },
                 "comment": {
@@ -227,13 +219,16 @@
                 {
                     "data_path": "action_result.parameter.clusterid",
                     "data_type": "string",
-                    "contains": [],
-                    "column_name": "clusterid"
+                    "column_name": "Clusterid"
                 },
                 {
                     "data_path": "action_result.status",
                     "data_type": "string",
-                    "column_name": "status"
+                    "column_name": "Status",
+                    "example_values": [
+                        "success",
+                        "failed"
+                    ]
                 },
                 {
                     "data_path": "action_result.message",
@@ -264,8 +259,6 @@
                     "description": "Cluster ID",
                     "data_type": "string",
                     "required": true,
-                    "primary": false,
-                    "value_list": [],
                     "order": 0
                 }
             },
@@ -273,8 +266,7 @@
                 {
                     "data_path": "action_result.parameter.clusterid",
                     "data_type": "string",
-                    "contains": [],
-                    "column_name": "clusterid"
+                    "column_name": "Clusterid"
                 },
                 {
                     "data_path": "action_result.data.*.attribute",
@@ -295,7 +287,11 @@
                 {
                     "data_path": "action_result.status",
                     "data_type": "string",
-                    "column_name": "status"
+                    "column_name": "Status",
+                    "example_values": [
+                        "success",
+                        "failed"
+                    ]
                 },
                 {
                     "data_path": "action_result.message",
@@ -326,28 +322,24 @@
                     "description": "Cluster ID",
                     "data_type": "string",
                     "required": true,
-                    "primary": false,
                     "order": 0
                 },
                 "attribute": {
                     "description": "Attribute",
                     "data_type": "string",
                     "required": true,
-                    "primary": false,
                     "order": 1
                 },
                 "operator": {
                     "description": "Operator",
                     "data_type": "string",
                     "required": true,
-                    "primary": false,
                     "order": 2
                 },
                 "value": {
                     "description": "Cluster ID",
                     "data_type": "string",
                     "required": true,
-                    "primary": false,
                     "order": 3
                 },
                 "comment": {
@@ -360,13 +352,16 @@
                 {
                     "data_path": "action_result.parameter.clusterid",
                     "data_type": "string",
-                    "contains": [],
-                    "column_name": "clusterid"
+                    "column_name": "Clusterid"
                 },
                 {
                     "data_path": "action_result.status",
                     "data_type": "string",
-                    "column_name": "status"
+                    "column_name": "Status",
+                    "example_values": [
+                        "success",
+                        "failed"
+                    ]
                 },
                 {
                     "data_path": "action_result.message",
@@ -397,28 +392,24 @@
                     "description": "Cluster ID",
                     "data_type": "string",
                     "required": true,
-                    "primary": false,
                     "order": 0
                 },
                 "attribute": {
                     "description": "Attribute",
                     "data_type": "string",
                     "required": true,
-                    "primary": false,
                     "order": 1
                 },
                 "operator": {
                     "description": "Operator",
                     "data_type": "string",
                     "required": true,
-                    "primary": false,
                     "order": 2
                 },
                 "value": {
                     "description": "Cluster ID",
                     "data_type": "string",
                     "required": true,
-                    "primary": false,
                     "order": 3
                 },
                 "comment": {
@@ -431,13 +422,16 @@
                 {
                     "data_path": "action_result.parameter.clusterid",
                     "data_type": "string",
-                    "contains": [],
-                    "column_name": "clusterid"
+                    "column_name": "Clusterid"
                 },
                 {
                     "data_path": "action_result.status",
                     "data_type": "string",
-                    "column_name": "status"
+                    "column_name": "Status",
+                    "example_values": [
+                        "success",
+                        "failed"
+                    ]
                 },
                 {
                     "data_path": "action_result.message",

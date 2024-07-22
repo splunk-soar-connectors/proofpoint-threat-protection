@@ -1,25 +1,35 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
-# -----------------------------------------
-# Phantom sample App Connector python file
-# -----------------------------------------
+# File: proofpointsoarapp_connector.py
+#
+# Copyright (c) 2024 Splunk Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software distributed under
+# the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+# either express or implied. See the License for the specific language governing permissions
+# and limitations under the License.
+#
+#
 
 # Python 3 Compatibility imports
 from __future__ import print_function, unicode_literals
 
+import base64
+import json
+
 # Phantom App imports
 import phantom.app as phantom
-from phantom.base_connector import BaseConnector
+import requests
+from bs4 import BeautifulSoup
 from phantom.action_result import ActionResult
+from phantom.base_connector import BaseConnector
 
 # Usage of the consts file is recommended
 from proofpointsoarapp_consts import *
-
-import json
-import base64
-import requests
-from bs4 import BeautifulSoup
-from datetime import datetime
 
 
 class RetVal(tuple):
@@ -127,19 +137,19 @@ class ProofpointSoarAppConnector(BaseConnector):
         )
 
         return RetVal(action_result.set_status(phantom.APP_ERROR, message), None)
-    
+
     def encode_token(self, token):
         sample_string_bytes = token.encode("ascii")
         base64_bytes = base64.b64encode(sample_string_bytes)
         base64_string = base64_bytes.decode("ascii")
         return base64_string
-    
+
     def decode_token(self, token_base64):
         base64_bytes = token_base64.encode("ascii")
         sample_string_bytes = base64.b64decode(base64_bytes)
         sample_string = sample_string_bytes.decode("ascii")
         return sample_string
-    
+
     def _generate_new_access_token(self, action_result, test_connectivity=False):
         """ This function is used to generate new access token using the code obtained on authorization."""
 
@@ -153,7 +163,7 @@ class ProofpointSoarAppConnector(BaseConnector):
                                                 data=payload, method="post", test_connectivity=test_connectivity,
                                                 token_generating_call=False)
         self.save_progress("Generating token...")
-        
+
         if phantom.is_fail(ret_val):
             return action_result.set_status(phantom.APP_ERROR, 'Failure in tokenization process {}'.format(resp_json))
 
@@ -161,11 +171,11 @@ class ProofpointSoarAppConnector(BaseConnector):
             self._access_token = resp_json['access_token']
         except:
             return action_result.set_status(phantom.APP_ERROR, 'There is no access token inside request response: {}'.format(resp_json))
-        
+
         self.save_progress("Token generated.")
 
         self._state['access_token'] = self.encode_token(resp_json['access_token'])
-        
+
         return phantom.APP_SUCCESS
 
     def _make_rest_call(self, url, action_result, test_connectivity=False, token_generating_call=True, method="get", **kwargs):
@@ -248,7 +258,7 @@ class ProofpointSoarAppConnector(BaseConnector):
         action_result.add_data(response.get('entries'))
 
         return action_result.set_status(phantom.APP_SUCCESS)
-    
+
     def _handle_add_to_delete_from_safe_list(self, param, request_action):
 
         self.save_progress("In action handler for: {0}".format(self.get_action_identifier()))
@@ -302,7 +312,7 @@ class ProofpointSoarAppConnector(BaseConnector):
         action_result.add_data(response.get('entries'))
 
         return action_result.set_status(phantom.APP_SUCCESS)
-    
+
     def _handle_add_to_delete_from_block_list(self, param, request_action):
 
         self.save_progress("In action handler for: {0}".format(self.get_action_identifier()))
