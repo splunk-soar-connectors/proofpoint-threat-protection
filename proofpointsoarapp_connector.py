@@ -185,7 +185,7 @@ class ProofpointSoarAppConnector(BaseConnector):
 
         resp_json = None
 
-        if not self._access_token and test_connectivity == False and token_generating_call == True:
+        if not self._access_token and not test_connectivity and token_generating_call == True:
             ret_val_tokenization = self._generate_new_access_token(action_result)
             if phantom.is_fail(ret_val_tokenization):
                 error_message = action_result.get_message()
@@ -253,7 +253,8 @@ class ProofpointSoarAppConnector(BaseConnector):
         )
 
         if phantom.is_fail(ret_val):
-            return action_result.set_status(phantom.APP_ERROR, "Error during Get Safe list entries endpoint execution, response: {}".format(response))
+            message = "Error during Get Safe list entries endpoint execution, response: {}".format(response)
+            return action_result.set_status(phantom.APP_ERROR, message)
 
         action_result.add_data(response.get('entries'))
 
@@ -277,7 +278,7 @@ class ProofpointSoarAppConnector(BaseConnector):
         }
 
         if param.get('comment'):
-            body.update({'comment': param['comment']})
+            body.update({'comment': param.get('comment')})
 
         # make rest call
         ret_val, response = self._make_rest_call(
@@ -307,7 +308,8 @@ class ProofpointSoarAppConnector(BaseConnector):
         )
 
         if phantom.is_fail(ret_val):
-            return action_result.set_status(phantom.APP_ERROR, "Error during Get block list entries endpoint execution, response: {}".format(response))
+            message = "Error during Get block list entries endpoint execution, response: {}".format(response)
+            return action_result.set_status(phantom.APP_ERROR, message)
 
         action_result.add_data(response.get('entries'))
 
@@ -331,7 +333,7 @@ class ProofpointSoarAppConnector(BaseConnector):
         }
 
         if param.get('comment'):
-            body.update({'comment': param['comment']})
+            body.update({'comment': param.get('comment')})
 
         # make rest call
         ret_val, response = self._make_rest_call(
@@ -344,6 +346,19 @@ class ProofpointSoarAppConnector(BaseConnector):
         action_result.add_data(response)
 
         return action_result.set_status(phantom.APP_SUCCESS, '{} Block list correctly'.format(request_action.capitalize()))
+
+    def _handle_add_to_safe_list(self, param):
+        return self._handle_add_to_delete_from_safe_list(param, 'add to')
+
+    def _handle_delete_from_safe_list(self, param):
+        return self._handle_add_to_delete_from_safe_list(param, 'delete from')
+
+    def _handle_add_to_block_list(self, param):
+        return self._handle_add_to_delete_from_block_list(param, 'add to')
+
+    def _handle_delete_from_block_list(self, param):
+        return self._handle_add_to_delete_from_block_list(param, 'delete from')
+
 
     def handle_action(self, param):
         ret_val = phantom.APP_SUCCESS
@@ -360,19 +375,19 @@ class ProofpointSoarAppConnector(BaseConnector):
             ret_val = self._handle_test_connectivity(param)
 
         if action_id == 'add_to_safe_list':
-            ret_val = self._handle_add_to_delete_from_safe_list(param, 'add to')
+            ret_val = self._handle_add_to_safe_list(param)
 
         if action_id == 'delete_from_safe_list':
-            ret_val = self._handle_add_to_delete_from_safe_list(param, 'delete from')
+            ret_val = self._handle_delete_from_safe_list(param)
 
         if action_id == 'get_block_list_entries':
             ret_val = self._handle_get_block_list_entries(param)
 
         if action_id == 'add_to_block_list':
-            ret_val = self._handle_add_to_delete_from_block_list(param, 'add to')
+            ret_val = self._handle_add_to_block_list(param)
 
         if action_id == 'delete_from_block_list':
-            ret_val = self._handle_add_to_delete_from_block_list(param, 'delete from')
+            ret_val = _handle_delete_from_block_list
 
         return ret_val
 

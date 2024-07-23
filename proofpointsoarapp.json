@@ -55,7 +55,7 @@
             "versions": "EQ(*)"
         },
         {
-            "action": "get safe list entries",
+            "action": "get safelist entries",
             "identifier": "get_safe_list_entries",
             "description": "Get safe list entries",
             "type": "generic",
@@ -109,7 +109,7 @@
             "versions": "EQ(*)"
         },
         {
-            "action": "add to safe list",
+            "action": "add to safelist",
             "identifier": "add_to_safe_list",
             "description": "Add to safe list",
             "type": "generic",
@@ -179,7 +179,7 @@
             "versions": "EQ(*)"
         },
         {
-            "action": "delete from safe list",
+            "action": "delete from safelist",
             "identifier": "delete_from_safe_list",
             "description": "Delete from safe list",
             "type": "generic",
@@ -249,7 +249,7 @@
             "versions": "EQ(*)"
         },
         {
-            "action": "get block list entries",
+            "action": "get blocklist entries",
             "identifier": "get_block_list_entries",
             "description": "Get block list entries",
             "type": "generic",
@@ -312,7 +312,7 @@
             "versions": "EQ(*)"
         },
         {
-            "action": "add to block list",
+            "action": "add to blocklist",
             "identifier": "add_to_block_list",
             "description": "Add to block list",
             "type": "generic",
@@ -382,7 +382,7 @@
             "versions": "EQ(*)"
         },
         {
-            "action": "delete from block list",
+            "action": "delete from blocklist",
             "identifier": "delete_from_block_list",
             "description": "Delete from block list",
             "type": "generic",
