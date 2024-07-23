@@ -185,7 +185,7 @@ class ProofpointSoarAppConnector(BaseConnector):
 
         resp_json = None
 
-        if not self._access_token and not test_connectivity and token_generating_call == True:
+        if not self._access_token and not test_connectivity and token_generating_call:
             ret_val_tokenization = self._generate_new_access_token(action_result)
             if phantom.is_fail(ret_val_tokenization):
                 error_message = action_result.get_message()
@@ -358,7 +358,6 @@ class ProofpointSoarAppConnector(BaseConnector):
 
     def _handle_delete_from_block_list(self, param):
         return self._handle_add_to_delete_from_block_list(param, 'delete from')
-
 
     def handle_action(self, param):
         ret_val = phantom.APP_SUCCESS
