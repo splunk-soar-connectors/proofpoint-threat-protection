@@ -104,7 +104,7 @@
                 },
                 {
                     "data_path": "action_result.status",
-                    "data_type": "numeric"
+                    "data_type": "string"
                 }
             ],
             "render": {
