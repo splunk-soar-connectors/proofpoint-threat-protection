@@ -15,7 +15,7 @@
             "name": "Patryk Dros"
         }
     ],
-    "license": "Copyright (c) Splunk, 2024",
+    "license": "Copyright (c) 2024 Splunk Inc.",
     "app_version": "1.0.0",
     "utctime_updated": "2024-05-13T11:05:38.641824Z",
     "package_name": "phantom_proofpointsoarapp",
@@ -256,7 +256,7 @@
             "action": "get blocklist entries",
             "identifier": "get_block_list_entries",
             "description": "Get block list entries",
-            "type": "generic",
+            "type": "investigate",
             "read_only": false,
             "parameters": {
                 "clusterid": {
