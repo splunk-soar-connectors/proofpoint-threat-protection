@@ -15,7 +15,7 @@
             "name": "Patryk Dros"
         }
     ],
-    "license": "Copyright (c) 2024 Splunk Inc.",
+    "license": "Copyright (c) 2024-2025 Splunk Inc.",
     "app_version": "1.0.1",
     "utctime_updated": "2024-05-13T11:05:38.641824Z",
     "package_name": "phantom_proofpointsoarapp",
@@ -175,6 +175,22 @@
                 {
                     "data_path": "summary.total_objects_successful",
                     "data_type": "numeric"
+                },
+                {
+                    "data_path": "action_result.parameter.attribute",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.parameter.operator",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.parameter.value",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.parameter.comment",
+                    "data_type": "string"
                 }
             ],
             "render": {
@@ -245,6 +261,22 @@
                 {
                     "data_path": "summary.total_objects_successful",
                     "data_type": "numeric"
+                },
+                {
+                    "data_path": "action_result.parameter.attribute",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.parameter.operator",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.parameter.value",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.parameter.comment",
+                    "data_type": "string"
                 }
             ],
             "render": {
@@ -378,6 +410,22 @@
                 {
                     "data_path": "summary.total_objects_successful",
                     "data_type": "numeric"
+                },
+                {
+                    "data_path": "action_result.parameter.attribute",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.parameter.operator",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.parameter.value",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.parameter.comment",
+                    "data_type": "string"
                 }
             ],
             "render": {
@@ -448,6 +496,22 @@
                 {
                     "data_path": "summary.total_objects_successful",
                     "data_type": "numeric"
+                },
+                {
+                    "data_path": "action_result.parameter.attribute",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.parameter.operator",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.parameter.value",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.parameter.comment",
+                    "data_type": "string"
                 }
             ],
             "render": {
