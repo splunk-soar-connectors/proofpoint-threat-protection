@@ -1,6 +1,6 @@
 # File: proofpointsoarapp_consts.py
 #
-# Copyright (c) 2024 Splunk Inc.
+# Copyright (c) 2024-2025 Splunk Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -16,8 +16,8 @@
 
 TOKENIZATION_ERR_MSG = "Problem with tokenization during action execution. {}"
 
-TOKEN_URL = 'https://auth.proofpoint.com/v1/token'
-BEARER_STRING = 'Bearer {}'
+TOKEN_URL = "https://auth.proofpoint.com/v1/token"
+BEARER_STRING = "Bearer {}"
 
-SAFE_LIST_ENTRIES_ENDPOINT = '/api/v1/emailProtection/modules/spam/orgSafeList'
-BLOCK_LIST_ENTRIES_ENDPOINT = '/api/v1/emailProtection/modules/spam/orgBlockList'
+SAFE_LIST_ENTRIES_ENDPOINT = "/api/v1/emailProtection/modules/spam/orgSafeList"
+BLOCK_LIST_ENTRIES_ENDPOINT = "/api/v1/emailProtection/modules/spam/orgBlockList"
