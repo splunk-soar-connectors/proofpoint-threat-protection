@@ -7,7 +7,7 @@
     "logo": "logo_proofpointsoarapp.svg",
     "logo_dark": "logo_proofpointsoarapp_dark.svg",
     "product_name": "Proofpoint Threat Protection API",
-    "python_version": "3",
+    "python_version": ["3.9", "3.13"],
     "product_version_regex": ".*",
     "publisher": "Splunk Community",
     "contributors": [
