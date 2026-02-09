@@ -337,7 +337,7 @@ class ProofpointSoarAppConnector(BaseConnector):
             ret_val = self._handle_add_to_block_list(param)
 
         if action_id == "delete_from_block_list":
-            ret_val = _handle_delete_from_block_list
+            ret_val = _handle_delete_from_block_list(param)
 
         return ret_val
 
