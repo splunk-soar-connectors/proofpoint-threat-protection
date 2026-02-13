@@ -1,1 +1,3 @@
 **Unreleased**
+
+* fix missing self reference in delete_from_block_list action handler
