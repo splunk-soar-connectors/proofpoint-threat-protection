@@ -1,6 +1,6 @@
 # File: proofpointsoarapp_connector.py
 #
-# Copyright (c) 2024-2025 Splunk Inc.
+# Copyright (c) 2024-2026 Splunk Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -337,7 +337,7 @@ class ProofpointSoarAppConnector(BaseConnector):
             ret_val = self._handle_add_to_block_list(param)
 
         if action_id == "delete_from_block_list":
-            ret_val = _handle_delete_from_block_list
+            ret_val = self._handle_delete_from_block_list(param)
 
         return ret_val
 

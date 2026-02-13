@@ -1,10 +1,10 @@
 # Proofpoint SOAR App
 
-Publisher: Splunk Community \
-Connector Version: 1.0.1 \
-Product Vendor: Proofpoint \
-Product Name: Proofpoint Threat Protection API \
-Minimum Product Version: 6.1.1.211
+Publisher: Splunk Community <br>
+Connector Version: 1.0.1 <br>
+Product Vendor: Proofpoint <br>
+Product Name: Proofpoint Threat Protection API <br>
+Minimum Product Version: 6.3.0
 
 Splunk SOAR app that integrates with the Proofpoint Threat Protection API. It leverage the strengths of Proofpoint's email protection to automate responses to threats and improve our overall security posture
 
@@ -20,19 +20,19 @@ VARIABLE | REQUIRED | TYPE | DESCRIPTION
 
 ### Supported Actions
 
-[test connectivity](#action-test-connectivity) - Validate the asset configuration for connectivity using supplied configuration \
-[get safelist entries](#action-get-safelist-entries) - Get safe list entries \
-[add to safelist](#action-add-to-safelist) - Add to safe list \
-[delete from safelist](#action-delete-from-safelist) - Delete from safe list \
-[get blocklist entries](#action-get-blocklist-entries) - Get block list entries \
-[add to blocklist](#action-add-to-blocklist) - Add to block list \
+[test connectivity](#action-test-connectivity) - Validate the asset configuration for connectivity using supplied configuration <br>
+[get safelist entries](#action-get-safelist-entries) - Get safe list entries <br>
+[add to safelist](#action-add-to-safelist) - Add to safe list <br>
+[delete from safelist](#action-delete-from-safelist) - Delete from safe list <br>
+[get blocklist entries](#action-get-blocklist-entries) - Get block list entries <br>
+[add to blocklist](#action-add-to-blocklist) - Add to block list <br>
 [delete from blocklist](#action-delete-from-blocklist) - Delete from block list
 
 ## action: 'test connectivity'
 
 Validate the asset configuration for connectivity using supplied configuration
 
-Type: **test** \
+Type: **test** <br>
 Read only: **True**
 
 #### Action Parameters
@@ -47,7 +47,7 @@ No Output
 
 Get safe list entries
 
-Type: **generic** \
+Type: **generic** <br>
 Read only: **False**
 
 #### Action Parameters
@@ -74,7 +74,7 @@ action_result.status | string | | |
 
 Add to safe list
 
-Type: **generic** \
+Type: **generic** <br>
 Read only: **False**
 
 #### Action Parameters
@@ -105,7 +105,7 @@ action_result.parameter.comment | string | | |
 
 Delete from safe list
 
-Type: **generic** \
+Type: **generic** <br>
 Read only: **False**
 
 #### Action Parameters
@@ -136,7 +136,7 @@ action_result.parameter.comment | string | | |
 
 Get block list entries
 
-Type: **investigate** \
+Type: **investigate** <br>
 Read only: **False**
 
 #### Action Parameters
@@ -163,7 +163,7 @@ summary.total_objects_successful | numeric | | |
 
 Add to block list
 
-Type: **generic** \
+Type: **generic** <br>
 Read only: **False**
 
 #### Action Parameters
@@ -194,7 +194,7 @@ action_result.parameter.comment | string | | |
 
 Delete from block list
 
-Type: **generic** \
+Type: **generic** <br>
 Read only: **False**
 
 #### Action Parameters
@@ -225,7 +225,7 @@ ______________________________________________________________________
 
 Auto-generated Splunk SOAR Connector documentation.
 
-Copyright 2025 Splunk Inc.
+Copyright 2026 Splunk Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
