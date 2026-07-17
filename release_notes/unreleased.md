@@ -1,3 +1,3 @@
 **Unreleased**
 
-* - chore: Refresh development tooling.
+* Added server certificate verification with a secure default.

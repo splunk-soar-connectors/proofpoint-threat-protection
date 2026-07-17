@@ -41,6 +41,13 @@
             "data_type": "password",
             "required": true,
             "order": 2
+        },
+        "verify_server_cert": {
+            "description": "Verify server SSL certificate",
+            "data_type": "boolean",
+            "default": true,
+            "required": false,
+            "order": 3
         }
     },
     "actions": [

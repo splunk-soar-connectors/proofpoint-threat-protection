@@ -17,6 +17,7 @@ VARIABLE | REQUIRED | TYPE | DESCRIPTION
 **base_url** | required | string | Company hostname for API execution |
 **client_id** | required | string | Client ID |
 **client_secret** | required | password | Client Secret |
+**verify_server_cert** | optional | boolean | Verify server SSL certificate |
 
 ### Supported Actions
 
