@@ -16,8 +16,8 @@
         }
     ],
     "license": "Copyright (c) 2024-2026 Splunk Inc.",
-    "app_version": "1.0.2",
-    "utctime_updated": "2026-02-13T05:38:41.134786Z",
+    "app_version": "1.0.3",
+    "utctime_updated": "2026-07-17T23:26:38.845014Z",
     "package_name": "phantom_proofpointsoarapp",
     "main_module": "proofpointsoarapp_connector.py",
     "min_phantom_version": "6.3.0",
