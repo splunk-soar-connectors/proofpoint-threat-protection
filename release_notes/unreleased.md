@@ -1,1 +1,4 @@
 **Unreleased**
+
+* Added server certificate verification with a secure default.
+* Encrypted cached OAuth access tokens and removed token response data from errors.

@@ -17,10 +17,10 @@
 
 # Python 3 Compatibility imports
 
-import base64
 import json
 
 # Phantom App imports
+import encryption_helper
 import phantom.app as phantom
 import requests
 from bs4 import BeautifulSoup
@@ -92,10 +92,9 @@ class ProofpointSoarAppConnector(BaseConnector):
         return RetVal(action_result.set_status(phantom.APP_ERROR, message), None)
 
     def _process_response(self, r, action_result):
-        # store the r_text in debug data, it will get dumped in the logs if the action fails
+        # Record response metadata without persisting a potentially sensitive body.
         if hasattr(action_result, "add_debug_data"):
             action_result.add_debug_data({"r_status_code": r.status_code})
-            action_result.add_debug_data({"r_text": r.text})
             action_result.add_debug_data({"r_headers": r.headers})
 
         # Process each 'Content-Type' of response separately
@@ -122,18 +121,6 @@ class ProofpointSoarAppConnector(BaseConnector):
 
         return RetVal(action_result.set_status(phantom.APP_ERROR, message), None)
 
-    def encode_token(self, token):
-        sample_string_bytes = token.encode("ascii")
-        base64_bytes = base64.b64encode(sample_string_bytes)
-        base64_string = base64_bytes.decode("ascii")
-        return base64_string
-
-    def decode_token(self, token_base64):
-        base64_bytes = token_base64.encode("ascii")
-        sample_string_bytes = base64.b64decode(base64_bytes)
-        sample_string = sample_string_bytes.decode("ascii")
-        return sample_string
-
     def _generate_new_access_token(self, action_result, test_connectivity=False):
         """This function is used to generate new access token using the code obtained on authorization."""
 
@@ -150,16 +137,22 @@ class ProofpointSoarAppConnector(BaseConnector):
         self.save_progress("Generating token...")
 
         if phantom.is_fail(ret_val):
-            return action_result.set_status(phantom.APP_ERROR, f"Failure in tokenization process {resp_json}")
+            return action_result.set_status(phantom.APP_ERROR, "Failure in tokenization process")
 
         try:
             self._access_token = resp_json["access_token"]
-        except:
-            return action_result.set_status(phantom.APP_ERROR, f"There is no access token inside request response: {resp_json}")
+        except (KeyError, TypeError):
+            return action_result.set_status(phantom.APP_ERROR, "The token endpoint response did not contain an access token")
 
         self.save_progress("Token generated.")
 
-        self._state["access_token"] = self.encode_token(resp_json["access_token"])
+        try:
+            encrypted_token = encryption_helper.encrypt(self._access_token, self.get_asset_id())
+        except Exception:
+            self._access_token = None
+            return action_result.set_status(phantom.APP_ERROR, "Unable to encrypt the generated access token")
+
+        self._state["access_token"] = encrypted_token
 
         return phantom.APP_SUCCESS
 
@@ -189,7 +182,7 @@ class ProofpointSoarAppConnector(BaseConnector):
             r = request_func(
                 url,
                 # auth=(username, password),  # basic authentication
-                verify=config.get("verify_server_cert", False),
+                verify=config.get("verify_server_cert", True),
                 **kwargs,
             )
         except Exception as e:
@@ -345,9 +338,17 @@ class ProofpointSoarAppConnector(BaseConnector):
         # Load the state in initialize, use it to store data
         # that needs to be accessed across actions
         self._state = self.load_state()
-        if self._state and not isinstance(self._state, dict):
+        if not isinstance(self._state, dict):
             self.debug_print("Resetting the state file with the default format")
             self._state = {"app_version": self.get_app_json().get("app_version")}
+
+        encrypted_token = self._state.get("access_token")
+        if encrypted_token:
+            try:
+                self._access_token = encryption_helper.decrypt(encrypted_token, self.get_asset_id())
+            except Exception:
+                self.debug_print("Unable to decrypt the cached access token; requesting a new token")
+                self._state.pop("access_token", None)
 
         # get the asset config
         config = self.get_config()
